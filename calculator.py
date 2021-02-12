@@ -18,51 +18,63 @@ while True:
     input_str = input("> ")
     tokens = input_str.split(' ')
   
-    if tokens[0] == "q":
-        quit()
+    if "q" in tokens:
+        print("Exiting now.")
+        break
+
     elif len(tokens) < 2:
         print("Not enough inputs.")
         continue
-   
+
     operator = tokens[0]
-    num1 = float(tokens[1])
+    num1 = tokens[1]
 
     if len(tokens) < 3:
-        num2 = 0
+        num2 = "0"
     else:
-        num2 = float(tokens[2])
+        num2 = tokens[2]
 
     if len(tokens) > 3:
-        num3 = float(tokens[3])
+        num3 = tokens[3]
+
+    if not num1.isdigit() or not num2.isdigit():
+        print("Those aren't numbers!")
+        continue
+
+    result = None
+    
 
     if operator == "+":
-        result = add(num1, num2)
+        result = add(float(num1), float(num2))
 
     elif operator == "-":
-        result = subtract(num1, num2)
+        result = subtract(float(num1), float(num2))
 
     elif operator == "*":
-        result = multiply(num1, num2)
+        result = multiply(float(num1), float(num2))
         
     elif operator == "/":
-        result = divide(num1, num2)
+        result = divide(float(num1), float(num2))
 
     elif operator == "square":
-        result = square(num1)
+        result = square(float(num1))
 
     elif operator == "cube":
-        result = cube(num1)
+        result = cube(float(num1))
 
     elif operator == "pow":
-        result = power(num1, num2)
+        result = power(float(num1), float(num2))
 
     elif operator == "mod":
-        result = mod(num1, num2)
+        result = mod(float(num1), float(num2))
 
     elif operator == "x+":
-        result = add_mult(num1, num2, num3)
+        result = add_mult(float(num1), float(num2), float(num3))
 
     elif operator == "cubes+":
-        result = add_cubes(num1, num2)
+        result = add_cubes(float(num1), float(num2))
+    
+    else:
+        result = "Please enter an operator followed by 2 integers"
 
     print(result)
